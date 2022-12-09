@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Popup from "reactjs-popup";
 import Button from "@mui/material/Button";
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init();
 
 export default function NewDestForm() {
   const [destinations, setDestinations] = useState([]);
@@ -86,6 +89,11 @@ export default function NewDestForm() {
 
   return (
     <div
+      data-aos="fade-up"
+      data-aos-offset="200"
+      data-aos-delay="50"
+      data-aos-duration="1000"
+      data-aos-easing="ease-in-out"
       style={{
         display: "flex",
         justifyContent: "center",

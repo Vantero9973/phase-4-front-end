@@ -8,6 +8,9 @@ import SellIcon from "@mui/icons-material/Sell";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import NewDestForm from "./NewDestForm";
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init();
 
 function DestinationData() {
   const [destinations, setDestinations] = useState();
@@ -58,7 +61,13 @@ function DestinationData() {
   if (!destinations) return <h2>Loading...</h2>;
 
   return (
-    <>
+    <div
+      data-aos="fade-up"
+      data-aos-offset="200"
+      data-aos-delay="50"
+      data-aos-duration="1000"
+      data-aos-easing="ease-in-out"
+    >
       <h1
         style={{
           display: "flex",
@@ -98,6 +107,7 @@ function DestinationData() {
                     margin: "10px",
                     borderRadius: "25px",
                     backgroundColor: "#2C2C2E",
+                    boxShadow: "0 0 10px",
                   }}
                 >
                   <CardMedia
@@ -236,7 +246,7 @@ function DestinationData() {
           })}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

@@ -7,6 +7,9 @@ import Typography from "@mui/material/Typography";
 import NewBlogForm from "./NewBlogForm";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init();
 
 export default function BlogData() {
   const [blogs, setBlogs] = useState();
@@ -42,7 +45,14 @@ export default function BlogData() {
   console.log(blogs);
 
   return (
-    <div style={{ padding: "100px", height: "100vh" }}>
+    <div
+      data-aos="fade-up"
+      data-aos-offset="200"
+      data-aos-delay="50"
+      data-aos-duration="1000"
+      data-aos-easing="ease-in-out"
+      style={{ padding: "100px", height: "100vh" }}
+    >
       <NewBlogForm />
       <div
         style={{
@@ -61,6 +71,7 @@ export default function BlogData() {
                   width: "80vw",
                   background: "#1C1C1E",
                   borderRadius: "20px",
+                  boxShadow: "0 0 10px",
                 }}
               >
                 <CardMedia

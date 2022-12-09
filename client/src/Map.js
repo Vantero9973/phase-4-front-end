@@ -5,6 +5,9 @@ import {
   Geography,
   ZoomableGroup,
 } from "react-simple-maps";
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init();
 
 const geoUrl =
   "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
@@ -13,6 +16,11 @@ const Map = ({ setTooltipContent, countries }) => {
   const navigate = useNavigate();
   return (
     <div
+      data-aos="fade-up"
+      data-aos-offset="200"
+      data-aos-delay="50"
+      data-aos-duration="1000"
+      data-aos-easing="ease-in-out"
       data-tip=""
       style={{
         height: "90vh",

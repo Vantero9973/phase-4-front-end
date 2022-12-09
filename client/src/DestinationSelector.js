@@ -81,10 +81,14 @@ export default function DestinationSelector({ destinations }) {
         {selectDestination && (
           <Card
             sx={{ width: 600 }}
-            style={{ borderRadius: "25px", background: "#2C2C2E" }}
+            style={{
+              borderRadius: "25px",
+              background: "#2C2C2E",
+              boxShadow: "0 0 100px",
+            }}
           >
             <CardMedia
-              style={{ height: "400px" }}
+              style={{ height: "400px", background: "#dadada" }}
               component="img"
               height="500"
               image={selectedDestination.image}

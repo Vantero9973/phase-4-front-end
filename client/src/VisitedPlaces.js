@@ -7,9 +7,18 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Search from "./Search";
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init();
 // import Popup from "reactjs-popup";
 
-export default function VisitedPlaces({ destinations, setSearch }) {
+export default function VisitedPlaces({
+  destinations,
+  setSearch,
+  names,
+  destinationsArray,
+  handleUpdate,
+}) {
   const navigate = useNavigate();
   const [deleteDestinations, setDeleteDestinations] = useState();
   const [updateDestinations, setUpdateDestinations] = useState();
@@ -44,11 +53,22 @@ export default function VisitedPlaces({ destinations, setSearch }) {
     });
   }
 
-  useEffect(() => {
-    fetch("http://localhost:3000/destinations")
-      .then((r) => r.json())
-      .then(setUpdateDestinations);
-  }, []);
+  // const handleUpdateDestination = () => {
+  //   fetch(`http://localhost:3000/destinations/${id}`, {
+  //     method: "PATCH",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       name: names,
+  //     }),
+  //   })
+  //     .then((r) => r.json())
+  //     .then((newDestination) => {
+  //       handleUpdate(newDestination);
+  //     });
+  //   setUpdateDestinations("");
+  // };
 
   // function handleAddDestination(newDestination) {
   //   const updatedDestinationsArray = [...searchDestinations, newDestination];
@@ -81,11 +101,17 @@ export default function VisitedPlaces({ destinations, setSearch }) {
           return (
             <>
               <Card
+                data-aos="fade-up"
+                data-aos-offset="200"
+                data-aos-delay="50"
+                data-aos-duration="1000"
+                data-aos-easing="ease-in-out"
                 sx={{ width: 275 }}
                 style={{
                   margin: "10px",
                   borderRadius: "10px",
                   background: "#2C2C2E",
+                  boxShadow: "0 0 10px",
                 }}
               >
                 <CardMedia
@@ -136,6 +162,7 @@ export default function VisitedPlaces({ destinations, setSearch }) {
                     >
                       <DeleteIcon />
                     </Button>
+                    {/* <Button onClick={handleUpdateDestination}>Update</Button> */}
                   </Typography>
                 </CardContent>
               </Card>

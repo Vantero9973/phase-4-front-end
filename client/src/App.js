@@ -38,8 +38,10 @@ function App() {
     });
   }, []);
 
-  const searchDestinationsByName = destinations.filter((destination) =>
-    destination.name.toLowerCase().includes(search.toLowerCase())
+  const searchDestinationsByName = destinations.filter(
+    (destination) =>
+      destination.country_name.toLowerCase().includes(search.toLowerCase()) ||
+      destination.name.toLowerCase().includes(search.toLowerCase())
   );
 
   console.log(user);

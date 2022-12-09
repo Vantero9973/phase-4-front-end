@@ -1,23 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DestinationSelector from "./DestinationSelector";
 import VisitedPlaces from "./VisitedPlaces";
 import Pagination from "./Pagination";
 import NewDestForm from "./NewDestForm";
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init();
 
 export default function HomePage({ destinations, countries, user, setSearch }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(10);
-  // const [updateDestinations, setUpdateDestinations] = useState();
 
-  // useEffect(() => {
-  //   fetch("http://localhost:3000/destinations")
-  //     .then((r) => r.json())
-  //     .then((data) => setUpdateDestinations(data));
-  // }, []);
+  const [destinationsArray, setDestinationsArray] = useState();
+
+  useEffect(() => {
+    fetch("http://localhost:3000/destinations")
+      .then((r) => r.json())
+      .then((destination) => setDestinationsArray(destination));
+  }, []);
 
   // function handleUpdate(updatedDestination) {
-  //   setUpdateDestinations((updateDestinations) =>
-  //     updateDestinations.map((destination) => {
+  //   setDestinationsArray((destinationsArray) =>
+  //     destinationsArray.map((destination) => {
   //       return destination.id === updatedDestination.id
   //         ? updatedDestination
   //         : destination;
@@ -26,7 +30,7 @@ export default function HomePage({ destinations, countries, user, setSearch }) {
   // }
 
   // function handleAdd(newDestination) {
-  //   setUpdateDestinations([...destinations, newDestination]);
+  //   setDestinationsArray([...destinations, newDestination]);
   // }
 
   const lastPostIndex = currentPage * postsPerPage;
@@ -36,6 +40,11 @@ export default function HomePage({ destinations, countries, user, setSearch }) {
     return (
       <>
         <div
+          data-aos="fade-up"
+          data-aos-offset="200"
+          data-aos-delay="50"
+          data-aos-duration="1000"
+          data-aos-easing="ease-in-out"
           style={{
             display: "flex",
             justifyContent: "center",
@@ -67,6 +76,8 @@ export default function HomePage({ destinations, countries, user, setSearch }) {
             destinations={currentPosts}
             setSearch={setSearch}
             countries={countries}
+            // destinationsArray={destinationsArray}
+            // handleUpdate={handleUpdate}
             // handleUpdate={handleUpdate}
           />
           <Pagination
@@ -81,7 +92,19 @@ export default function HomePage({ destinations, countries, user, setSearch }) {
   } else {
     return (
       <>
-        <div>
+        <div
+          data-aos="fade-up"
+          data-aos-offset="200"
+          data-aos-delay="50"
+          data-aos-duration="1000"
+          data-aos-easing="ease-in-out"
+          style={{
+            height: "90vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <DestinationSelector destinations={destinations} />
         </div>
         <div style={{ padding: "5vh" }}>
@@ -90,6 +113,8 @@ export default function HomePage({ destinations, countries, user, setSearch }) {
             destinations={currentPosts}
             setSearch={setSearch}
             countries={countries}
+            // destinationsArray={destinationsArray}
+            // handleUpdate={handleUpdate}
           />
           <Pagination
             totalPosts={destinations.length}
