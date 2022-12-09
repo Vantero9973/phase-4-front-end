@@ -6,11 +6,20 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import SellIcon from "@mui/icons-material/Sell";
+import plane from "./plane.gif";
 
 export default function DestinationSelector({ destinations }) {
   const [filters, setFilters] = useState({});
   const [filteredDestinations, setFilteredDestinations] = useState([]);
-  const [selectedDestination, setSelectedDestination] = useState([]);
+  const [selectedDestination, setSelectedDestination] = useState({
+    name: "Maz's House",
+    image: "https://media0.giphy.com/media/hVxJUqWXVrCGTDpnVU/giphy.gif",
+    temp: "mild",
+    type_of_destination: "adventure",
+    flight: "long",
+    country_name: "Sudan",
+    country_id: "1",
+  });
 
   useEffect(() => {
     setFilteredDestinations(destinations);
@@ -44,9 +53,10 @@ export default function DestinationSelector({ destinations }) {
         justifyContent: "center",
         alignItems: "center",
         fontSize: "20px",
+        marginTop: "5vh",
       }}
     >
-      <div style={{ marginTop: "10vh", marginLeft: "5vw" }}>
+      <div style={{ marginLeft: "5vw", marginBottom: "5vh" }}>
         <Checkboxes filters={filters} setFilters={setMyFilters} />
         <Button
           variant="outlined"
@@ -67,7 +77,7 @@ export default function DestinationSelector({ destinations }) {
           Select Destination
         </Button>
       </div>
-      <div style={{ margin: "50px", marginTop: "15vh" }}>
+      <div style={{ margin: "8vh", marginTop: "5vh" }}>
         {selectDestination && (
           <Card
             sx={{ width: 600 }}

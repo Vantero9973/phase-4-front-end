@@ -1,11 +1,25 @@
 import { Link } from "react-router-dom";
 import { Typewriter } from "react-simple-typewriter";
+import Button from "@mui/material/Button";
+import Login from "./Login";
+import SignUp from "./SignUp";
 
-export default function Navbar() {
+export default function Navbar({ user, setUser }) {
+  function handleLogoutClick() {
+    fetch("http://localhost:3000/logout", { method: "DELETE" }).then((r) => {
+      if (r.ok) {
+        setUser(null);
+      }
+    });
+  }
+
   return (
-    <div
+    <nav
       className="navbar bg-base-100"
-      style={{ backgroundColor: "#1C1C1E", position: "fixed", zIndex: "950" }}
+      style={{
+        backgroundColor: "#1C1C1E",
+        zIndex: "950",
+      }}
     >
       <div className="flex-1" style={{ marginLeft: "1vw" }}>
         <h1
@@ -19,7 +33,9 @@ export default function Navbar() {
           Destination Picker
         </h1>
         <Typewriter
-          words={["- - - - - - - - - - - - - - - - - - - -"]}
+          words={[
+            "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -",
+          ]}
           loop={500}
           typeSpeed={70}
           deleteSpeed={50}
@@ -38,25 +54,54 @@ export default function Navbar() {
           ></img>
         </Link>
       </div>
-      <div className="flex-none">
-        <ul>
+      <div>
+        <ul style={{ display: "flex", alignItems: "center" }}>
           <li>
             <Link to="/map">
-              <h3
+              <Button
+                variant="outlined"
                 href="/map"
                 style={{
-                  fontSize: "20px",
-                  fontWeight: "800",
-                  color: "lightgray",
-                  marginRight: "2vw",
+                  fontSize: "16px",
+                  fontWeight: "bolder",
+                  background: "#2C2C2E",
+                  color: "#dadada",
+                  borderColor: "#dadada",
+                  borderRadius: "20px",
+                  marginRight: "1vw",
+                  width: "5vw",
                 }}
               >
                 Map
-              </h3>
+              </Button>
             </Link>
+          </li>
+          <li style={{ marginRight: "1vw" }}>
+            <Login user={user} setUser={setUser} />
+          </li>
+          <li>
+            <Button
+              onClick={handleLogoutClick}
+              variant="outlined"
+              type="submit"
+              style={{
+                fontSize: "16px",
+                fontWeight: "bolder",
+                background: "#2C2C2E",
+                color: "#dadada",
+                borderColor: "#dadada",
+                borderRadius: "20px",
+                marginRight: "1vw",
+              }}
+            >
+              Log Out
+            </Button>
+          </li>
+          <li style={{ marginRight: "1vw" }}>
+            <SignUp user={user} setUser={setUser} />
           </li>
         </ul>
       </div>
-    </div>
+    </nav>
   );
 }

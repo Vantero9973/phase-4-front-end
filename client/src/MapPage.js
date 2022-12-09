@@ -9,7 +9,7 @@ export default function MapPage({ content, setContent, countries }) {
         justifyContent: "center",
         height: "100vh",
         width: "100vw",
-        background: "lightgray",
+        background: "#2C2C2E",
       }}
     >
       <MapLink

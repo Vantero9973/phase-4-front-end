@@ -15,10 +15,10 @@ const Map = ({ setTooltipContent, countries }) => {
     <div
       data-tip=""
       style={{
-        height: "100vh",
-        width: "95vw",
-        backgroundColor: "lightgray",
-        marginTop: "20vh",
+        height: "90vh",
+        width: "90vw",
+        backgroundColor: "#2C2C2E",
+        // marginBottom: "8vh",
       }}
     >
       <ComposableMap
@@ -26,7 +26,7 @@ const Map = ({ setTooltipContent, countries }) => {
         height={260}
         projectionConfig={{
           rotate: [-20, 0, 0],
-          scale: 97,
+          scale: 100,
         }}
       >
         <ZoomableGroup>
@@ -51,11 +51,11 @@ const Map = ({ setTooltipContent, countries }) => {
                     onClick={() => navigate(`/destinations/${dbCountry.id}`)}
                     style={{
                       default: {
-                        fill: "#2C2C2E",
+                        fill: "lightgray",
                         outline: "none",
                       },
                       hover: {
-                        fill: "darkgray",
+                        fill: "gray",
                         outline: "none",
                       },
                       pressed: {

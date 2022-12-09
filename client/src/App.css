@@ -4,6 +4,7 @@
 
 body {
   background-color: #2C2C2E;
+  min-height: 100vh;
 }
 
 .pagination {
@@ -24,13 +25,12 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
   background: transparent;
-  color: #eee;
-  border-color: #eee;
+  color: #dadada;
+  border-color: #dadada;
 }
 
 .pagination button.active {
   font-weight: 900;
-  border-color: #101010;
-  background: #ffe400;
-  color: #101010;
+  background: #1C1C1E;
+  color: #dadada;
 }

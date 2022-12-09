@@ -11,6 +11,8 @@ function App() {
   const [content, setContent] = useState("");
   const [countries, setCountries] = useState([]);
   const [destinations, setDestinations] = useState([]);
+  const [user, setUser] = useState(null);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:3000/countries")
@@ -28,24 +30,34 @@ function App() {
       });
   }, []);
 
-  // useEffect(() => {
-  //   fetch("http://localhost:3000/blogs")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setBlogInfo(data);
-  //     });
-  // }, []);
+  useEffect(() => {
+    fetch("http://localhost:3000/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      }
+    });
+  }, []);
+
+  const searchDestinationsByName = destinations.filter((destination) =>
+    destination.name.toLowerCase().includes(search.toLowerCase())
+  );
+
+  console.log(user);
 
   return (
     <>
-      <NavBar />
-      <div>
+      <NavBar user={user} setUser={setUser} />
+      <div style={{ background: "#2C2C2E" }}>
         <Routes>
           <Route
-            exact
             path="/"
             element={
-              <HomePage destinations={destinations} countries={countries} />
+              <HomePage
+                destinations={searchDestinationsByName}
+                countries={countries}
+                user={user}
+                setSearch={setSearch}
+              />
             }
           />
           <Route

@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Popup from "reactjs-popup";
+import Button from "@mui/material/Button";
 
 export default function NewDestForm() {
   const [destinations, setDestinations] = useState([]);
@@ -83,62 +85,181 @@ export default function NewDestForm() {
   if (status === "rejected") return <h1>Error: {error.error}</h1>;
 
   return (
-    <>
-      <h1 className="shopTitle addNew">Add New Destination</h1>
-      <div className="pokemon-form">
-        <form id="pokemon-form" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <input
-            type="text"
-            name="id"
-            placeholder="Country Name"
-            value={country_name}
-            onChange={(e) => setCountryName(e.target.value)}
-          />
-          <input
-            type="text"
-            name="sprites"
-            placeholder="Image URL"
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
-          />
-          <input
-            type="text"
-            name="typeOne"
-            placeholder="Type"
-            value={type_of_destination}
-            onChange={(e) => setType_of_destination(e.target.value)}
-          />
-          <input
-            type="text"
-            name="typeTwo"
-            placeholder="Temp"
-            value={temp}
-            onChange={(e) => setTemp(e.target.value)}
-          />
-          <input
-            type="text"
-            name="typeTwo"
-            placeholder="Flight"
-            value={flight}
-            onChange={(e) => setFlight(e.target.value)}
-          />
-          <input
-            type="text"
-            name="typeTwo"
-            placeholder="Country_ID"
-            value={country_id}
-            onChange={(e) => setCountryId(e.target.value)}
-          />
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-    </>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        gap: "52vw",
+      }}
+    >
+      <h1
+        style={{
+          display: "flex",
+          justifyContent: "left",
+          fontSize: "36px",
+          fontWeight: "600",
+          color: "#dadada",
+        }}
+      >
+        Destinations
+      </h1>
+      <Popup
+        trigger={
+          <Button
+            variant="outlined"
+            className="addNewPopup"
+            style={{
+              fontSize: "16px",
+              fontWeight: "bold",
+              background: "#1C1C1E",
+              color: "#dadada",
+              borderColor: "#dadada",
+            }}
+          >
+            Add New Destination
+          </Button>
+        }
+        modal
+        nested
+      >
+        <div
+          style={{
+            background: "#1C1C1E",
+            display: "flex",
+            width: "50vw",
+            height: "60vh",
+            borderRadius: "50px",
+          }}
+        >
+          <div
+            className="pokemon-form"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "10px",
+              marginTop: "2vh",
+            }}
+          >
+            <div>
+              <form
+                id="pokemon-form"
+                onSubmit={handleSubmit}
+                style={{ marginLeft: "5vw" }}
+              >
+                <input
+                  style={{
+                    width: "40vw",
+                    height: "5vh",
+                    fontSize: "24px",
+                    display: "flex",
+                    marginBottom: "10px",
+                  }}
+                  type="text"
+                  name="name"
+                  placeholder=" Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+                <input
+                  style={{
+                    width: "40vw",
+                    height: "5vh",
+                    fontSize: "24px",
+                    marginBottom: "10px",
+                  }}
+                  type="text"
+                  name="id"
+                  placeholder=" Country Name"
+                  value={country_name}
+                  onChange={(e) => setCountryName(e.target.value)}
+                />
+                <input
+                  style={{
+                    width: "40vw",
+                    height: "5vh",
+                    fontSize: "24px",
+                    marginBottom: "10px",
+                  }}
+                  type="text"
+                  name="sprites"
+                  placeholder=" Image URL"
+                  value={image}
+                  onChange={(e) => setImage(e.target.value)}
+                />
+                <input
+                  style={{
+                    width: "40vw",
+                    height: "5vh",
+                    fontSize: "24px",
+                    marginBottom: "10px",
+                  }}
+                  type="text"
+                  name="typeOne"
+                  placeholder=" Type"
+                  value={type_of_destination}
+                  onChange={(e) => setType_of_destination(e.target.value)}
+                />
+                <input
+                  style={{
+                    width: "40vw",
+                    height: "5vh",
+                    fontSize: "24px",
+                    marginBottom: "10px",
+                  }}
+                  type="text"
+                  name="typeTwo"
+                  placeholder=" Temp"
+                  value={temp}
+                  onChange={(e) => setTemp(e.target.value)}
+                />
+                <input
+                  style={{
+                    width: "40vw",
+                    height: "5vh",
+                    fontSize: "24px",
+                    marginBottom: "10px",
+                  }}
+                  type="text"
+                  name="typeTwo"
+                  placeholder=" Flight"
+                  value={flight}
+                  onChange={(e) => setFlight(e.target.value)}
+                />
+                <input
+                  style={{
+                    width: "40vw",
+                    height: "5vh",
+                    fontSize: "24px",
+                    marginBottom: "10px",
+                  }}
+                  type="text"
+                  name="typeTwo"
+                  placeholder=" Country ID"
+                  value={country_id}
+                  onChange={(e) => setCountryId(e.target.value)}
+                />
+                <Button
+                  variant="outlined"
+                  type="submit"
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: "bolder",
+                    color: "#1C1C1E",
+                    background: "#dadada",
+                    marginLeft: "12.5vw",
+                    marginTop: "2vh",
+                    width: "15vw",
+                  }}
+                >
+                  Add New Destination
+                </Button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </Popup>
+    </div>
   );
 }
